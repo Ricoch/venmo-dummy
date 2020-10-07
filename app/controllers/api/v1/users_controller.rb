@@ -4,7 +4,10 @@ module Api
       def show; end
 
       def create
-        UserService.create_user(user_params)
+        user = UserService.create_user(user_params)
+
+        # For simplicity, will create the payment source here
+        ExternalPaymentSource.create!(user: user)
 
         head :ok
       end
