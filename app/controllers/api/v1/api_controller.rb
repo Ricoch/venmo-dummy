@@ -2,10 +2,6 @@ module Api
   module V1
     class ApiController < ApplicationController
       include Api::Concerns::ActAsApiRequest
-      include DeviseTokenAuth::Concerns::SetUserByToken
-
-      before_action :authenticate_user!, except: :status
-      skip_after_action :verify_authorized, only: :status
 
       layout false
       respond_to :json

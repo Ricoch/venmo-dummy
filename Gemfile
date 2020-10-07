@@ -5,34 +5,21 @@ ruby '~> 2.7.1'
 gem 'rails', '~> 6.0.0'
 
 gem 'activeadmin', '~> 2.8'
-gem 'active_storage_base64', '~> 1.0.0'
 gem 'arctic_admin', '~> 3.2'
 gem 'aws-sdk-s3', '~> 1', require: false
 gem 'bootsnap', '~> 1.4', '>= 1.4.5'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.4'
-gem 'devise', '~> 4.7', '>= 4.7.2'
-gem 'devise_token_auth', '~> 1.1', '>= 1.1.4'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', '~> 0.4'
 gem 'figaro', '~> 1.1.1'
 gem 'jbuilder', '~> 2.10'
 gem 'oj', '~> 3.9', '>= 3.9.2'
-gem 'pagy', '~> 3.7', '>= 3.7.5'
 gem 'pg', '~> 1.1', '>= 1.1.4'
 gem 'puma', '~> 5.0'
-gem 'pundit', '~> 2.1'
 gem 'rack-cors', '~> 1.0', '>= 1.0.6'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'webpacker', '~> 5.1', '>= 5.1.1'
-gem 'yaaf', '~> 0.1'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   gem 'bullet', '~> 6.1'
