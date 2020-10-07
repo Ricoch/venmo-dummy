@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         scope module: :users do
           resources :balance, only: [:index], controller: :balances
           resources :payment, only: [:create], controller: :payments
+          resources :feed, only: [:index], controller: :feeds
           resources :friendships, only: %i[destroy index]
           resources :friendship_requests, only: %i[create destroy index] do
             post :accept
