@@ -15,6 +15,10 @@ module Api
           @requests = current_user.received_friendship_requests
         end
 
+        def accept
+          FriendshipService.accept_request(current_received_friendship_request)
+        end
+
         def destroy
           FriendshipService.cancel_request(current_received_friendship_request)
         end

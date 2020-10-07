@@ -17,6 +17,8 @@
 
 class User < ApplicationRecord
 
+  has_many :friendships, foreign_key: :user_a_id, dependent: :destroy, inverse_of: :user_a
+  has_many :friends, through: :friendships, source: :user_b
 
 
 
