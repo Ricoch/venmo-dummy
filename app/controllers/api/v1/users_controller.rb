@@ -4,7 +4,7 @@ module Api
       def show; end
 
       def create
-        user = UserService.create_user(user_params)
+        UserService.create_user(user_params)
 
         head :ok
       end
