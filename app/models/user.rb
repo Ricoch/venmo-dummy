@@ -29,6 +29,8 @@ class User < ApplicationRecord
                                           dependent: :destroy,
                                           inverse_of: :receiver
 
+  scope :with_friendships_and_friends, -> { includes(:friends) }
+
   def full_name
     return username if first_name.blank?
 
