@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       get :status, to: 'api#status'
 
-      resources :users, only: %i[update show]
+      resources :users, only: %i[update show] do
+        scope module: :users do
+          resources :friendship_requests, only: %i[create destroy index]
+        end
+      end
 
       resources :settings, only: [] do
         get :must_update, on: :collection

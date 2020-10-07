@@ -20,7 +20,15 @@ class User < ApplicationRecord
 
 
 
+  has_many :sent_friendship_requests, class_name: 'FriendshipRequest',
+                                      foreign_key: :requester_id,
+                                      dependent: :destroy,
+                                      inverse_of: :requester
 
+  has_many :received_friendship_requests, class_name: 'FriendshipRequest',
+                                          foreign_key: :receiver_id,
+                                          dependent: :destroy,
+                                          inverse_of: :receiver
 
 
   def full_name
