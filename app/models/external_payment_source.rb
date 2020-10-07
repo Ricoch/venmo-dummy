@@ -13,4 +13,34 @@
 #
 class ExternalPaymentSource < ApplicationRecord
   belongs_to :user
+
+  has_many :balances, dependent: :destroy
+
+  def last_balance
+    balances.last&.total.to_f
+  end
+
+  def send_money(amount)
+    remaining = last_balance - amount
+
+    balance_charge(-remaining) if remaining < 0
+
+    decrease_balance(amount)
+
+    true
+  end
+
+  def add_balance(amount)
+    balances.create!(total: last_balance + amount, change: amount)
+  end
+
+  def decrease_balance(amount)
+    balances.create!(total: last_balance - amount, change: -amount)
+  end
+
+  def balance_charge(amount)
+    success = ExternalPaymentService.transfer_amount(amount)
+
+    add_balance(amount) if success
+  end
 end

@@ -31,7 +31,10 @@ class User < ApplicationRecord
                                           dependent: :destroy,
                                           inverse_of: :receiver
 
+  scope :with_balances, -> { includes(external_payment_source: :balances) }
   scope :with_friendships_and_friends, -> { includes(:friends) }
+
+  delegate :last_balance, to: :external_payment_source, allow_nil: true
 
   def full_name
     return username if first_name.blank?
