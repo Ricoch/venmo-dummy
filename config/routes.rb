@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :users, only: %i[update show] do
         scope module: :users do
           resources :balance, only: [:index], controller: :balances
+          resources :payment, only: [:create], controller: :payments
           resources :friendships, only: %i[destroy index]
           resources :friendship_requests, only: %i[create destroy index] do
             post :accept
