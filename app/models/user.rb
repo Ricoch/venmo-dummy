@@ -16,6 +16,8 @@
 #
 
 class User < ApplicationRecord
+  has_one :external_payment_source
+
   has_many :friendships, foreign_key: :user_a_id, dependent: :destroy, inverse_of: :user_a
   has_many :friends, through: :friendships, source: :user_b
 
