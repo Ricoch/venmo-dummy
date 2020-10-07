@@ -23,7 +23,7 @@ class ExternalPaymentSource < ApplicationRecord
   def send_money(amount)
     remaining = last_balance - amount
 
-    balance_charge(-remaining) if remaining < 0
+    balance_charge(-remaining) if remaining.negative?
 
     decrease_balance(amount)
 

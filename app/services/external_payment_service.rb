@@ -1,5 +1,5 @@
 class ExternalPaymentService
-  def self.transfer_amount(amount)
+  def self.transfer_amount(_amount)
     true
   end
 end
