@@ -3,6 +3,12 @@ module Api
     class UsersController < Api::V1::ApiController
       def show; end
 
+      def create
+        user = UserService.create_user(user_params)
+
+        head :ok
+      end
+
       def update
         current_user.update!(user_params)
         render :show
