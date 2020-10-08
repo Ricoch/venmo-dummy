@@ -4,7 +4,6 @@ class FeedService
 
     scope = Payment.includes(:sender, :receiver)
 
-
     scope.where(sender_id: friend_ids)
          .or(scope.where(receiver_id: friend_ids))
          .order(created_at: :desc)

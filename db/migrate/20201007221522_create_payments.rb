@@ -11,7 +11,6 @@ class CreatePayments < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_index :payments, [:sender_id, :receiver_id]
+    add_index :payments, %i[sender_id receiver_id]
   end
 end
-
