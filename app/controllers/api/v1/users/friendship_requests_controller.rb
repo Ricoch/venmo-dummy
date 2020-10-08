@@ -16,7 +16,7 @@ module Api
         end
 
         def accept
-          FriendshipService.accept_request(current_received_friendship_request)
+          FriendshipService.accept_request(current_user, current_received_friendship_request)
         end
 
         def destroy
