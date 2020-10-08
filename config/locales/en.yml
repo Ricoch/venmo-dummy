@@ -12,3 +12,5 @@ en:
       not_found: Couldn't find the record
       server: An error ocurred
       unable_to_add_friend: Unable to add friend. Already added.
+      payment:
+        must_be_to_a_friend: Payment must be to a friend
