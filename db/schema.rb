@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_07_053318) do
+ActiveRecord::Schema.define(version: 2020_10_07_221522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -90,6 +90,18 @@ ActiveRecord::Schema.define(version: 2020_10_07_053318) do
     t.index ["user_a_id", "user_b_id"], name: "index_friendships_on_user_a_id_and_user_b_id", unique: true
     t.index ["user_a_id"], name: "index_friendships_on_user_a_id"
     t.index ["user_b_id"], name: "index_friendships_on_user_b_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
+    t.string "description"
+    t.float "amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["receiver_id"], name: "index_payments_on_receiver_id"
+    t.index ["sender_id", "receiver_id"], name: "index_payments_on_sender_id_and_receiver_id"
+    t.index ["sender_id"], name: "index_payments_on_sender_id"
   end
 
   create_table "settings", force: :cascade do |t|
