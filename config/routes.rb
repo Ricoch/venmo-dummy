@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       get :status, to: 'api#status'
 
-      resources :users, only: %i[update show] do
+      resources :users, only: %i[update show index create] do
         scope module: :users do
           resources :balance, only: [:index], controller: :balances
           resources :payment, only: [:create], controller: :payments
