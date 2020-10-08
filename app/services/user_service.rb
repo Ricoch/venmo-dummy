@@ -1,5 +1,5 @@
 class UserService
-  def create_user(params)
+  def self.create_user(params)
     User.create!(params)
   end
 end
