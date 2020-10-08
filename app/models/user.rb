@@ -34,6 +34,8 @@ class User < ApplicationRecord
   scope :with_balances, -> { includes(external_payment_source: :balances) }
   scope :with_friendships_and_friends, -> { includes(:friends) }
 
+  validates :email, :first_name, presence: true
+
   delegate :last_balance, to: :external_payment_source, allow_nil: true
 
   def full_name

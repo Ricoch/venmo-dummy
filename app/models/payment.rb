@@ -42,7 +42,7 @@ class Payment < ApplicationRecord
   end
 
   def user_is_friend
-    return if sender.friends.include?(receiver)
+    return if sender&.friends&.include?(receiver)
 
     errors.add(:payment, I18n.t('api.errors.payment.must_be_to_a_friend'))
   end

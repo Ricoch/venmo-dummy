@@ -10,17 +10,14 @@ class FriendshipService
     sent_requests.create!(receiver_id: friend_id)
   end
 
-  def self.check_accept_request(user, friend_id)
-    friendship_request = FriendshipRequest.find_by(requester_id: friend_id, receiver_id: user.id)
-
-    accept_request(friendship_request)
-  end
-
-  def self.accept_request(friendship_request)
+  # :reek:ControlParameter
+  def self.accept_request(user, friendship_request)
     return unless friendship_request
 
     requester = friendship_request.requester
     receiver = friendship_request.receiver
+
+    return if user == requester
 
     return if requester.friendships.find_by(user_b: receiver)
 
@@ -36,7 +33,9 @@ class FriendshipService
     friendship_a = user.friendships.find_by(user_b_id: friend_id)
     friendship_b = Friendship.find_by(user_a_id: friend_id, user_b: user)
 
-    [friendship_a, friendship_b].each(&:destroy!)
+    return unless friendship_a.present? && friendship_b.present?
+
+    [friendship_a, friendship_b].compact.each(&:destroy!)
   end
 
   def self.add_mutual_friends(requester, receiver)
@@ -48,5 +47,11 @@ class FriendshipService
     return unless friendship_request
 
     friendship_request.destroy!
+  end
+
+  def self.check_accept_request(user, friend_id)
+    friendship_request = FriendshipRequest.find_by(requester_id: friend_id, receiver_id: user.id)
+
+    accept_request(user, friendship_request)
   end
 end
