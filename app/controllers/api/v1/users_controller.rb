@@ -3,6 +3,10 @@ module Api
     class UsersController < Api::V1::ApiController
       def show; end
 
+      def index
+        @users = User.all
+      end
+
       def create
         user = UserService.create_user(user_params)
 
