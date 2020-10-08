@@ -17,7 +17,9 @@
 
 FactoryBot.define do
   factory :user do
-    email    { Faker::Internet.unique.email }
-    username { Faker::Internet.unique.user_name }
+    email      { Faker::Internet.unique.email }
+    username   { Faker::Internet.unique.user_name }
+    first_name { Faker::Name.first_name }
+    last_name  { Faker::Name.name }
   end
 end
