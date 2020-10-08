@@ -78,6 +78,26 @@ describe PaymentService do
 
         expect((final_balance - initial_balance).round(2)).to eq(transfer_amount)
       end
+
+      context 'when the user tries to pay more than their remaining balance' do
+        let(:user_balance_total) { 60 }
+        let!(:transfer_amount) { 100 }
+        let!(:friend_balance) { create(:balance, external_payment_source: friend_payment_source) }
+        let!(:user_balance) do
+          create(:balance, external_payment_source: user_payment_source, total: user_balance_total)
+        end
+
+        it 'transfers money from external payment source' do
+          charge_amount = transfer_amount - user_balance_total
+
+          expect(ExternalPaymentService)
+            .to receive(:transfer_amount)
+            .with(charge_amount)
+            .and_return(true)
+
+          subject
+        end
+      end
     end
   end
 end
